@@ -971,16 +971,16 @@ option:not(:checked) {
   width: 100%;
   margin: 0 auto;
 }
-.slick-track{
-  width: 100%!important;
-  transform:none!important;
-  display:flex;
+.slider-image-container .slick-track {
+  width: 100% !important;
+  transform: none !important;
+  display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   min-height: 180px;
 }
-div[aria-hidden="true"] {
-  display: none!important;
+.slider-image-container div[aria-hidden="true"] {
+  display: none !important;
 }
 .slider-image-container .img-outer .img-inner {
   display: flex;
@@ -1070,7 +1070,9 @@ div[aria-hidden="true"] {
   width: 48px;
   height: 48px;
 }
-.testimonials .slick-next.slick-arrow::before {
+
+.slider-container{
+  margin-top: 20px;
 }
 
 /* ------------------  */
@@ -1391,6 +1393,18 @@ div[aria-hidden="true"] {
 
   .car-rental-steps {
     padding-top: 80px;
+  }
+  .img-outer.slick-slide .img-inner img {
+    width: 120px;
+    height: 120px;
+  }
+  .slider-image-container
+    .slick-slide.slick-active.slick-center
+    + .slick-slide
+    .img-inner
+    img {
+    width: 120px;
+    height: 120px;
   }
 }
 @media (max-width: 991px) {

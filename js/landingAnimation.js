@@ -41,10 +41,10 @@ $(".car-slider").slick({
 $(".slider-thumb").slick({
     // dots: true,
     infinite: true,
-    speed: 300,
+    // speed: 300,
     slidesToShow: 7,
     slideToScroll: 1,
-    autoplaySpeed: 2000,
+    // autoplaySpeed: 2000,
     // autoplay: true,
     centerMode: true,
     asNavFor: '.slider-content',
@@ -53,7 +53,7 @@ $(".slider-thumb").slick({
     nextArrow: "<button type='button' class='slick-next btn'><img src='./images/ic-arrow-next.svg' alt='Next Icon'></button>",
     responsive: [
         {
-            breakpoint: 1024,
+            breakpoint: 1200,
             settings: {
                 slidesToShow: 3,
                 slideToScroll: 1,
@@ -84,6 +84,6 @@ $('.slider-content').slick({
     // speed: 1000,
     adaptiveHeight: true,
     arrows: false,
-    fade: true,
+    // fade: true,
     asNavFor: '.slider-thumb',
 });
