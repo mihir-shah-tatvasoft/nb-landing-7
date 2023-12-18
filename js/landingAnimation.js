@@ -55,7 +55,7 @@ $(".slider-thumb").slick({
         {
             breakpoint: 1024,
             settings: {
-                slidesToShow: 5,
+                slidesToShow: 3,
                 slideToScroll: 1,
             },
         },
