@@ -971,13 +971,23 @@ option:not(:checked) {
   width: 100%;
   margin: 0 auto;
 }
-
+.slick-track{
+  width: 100%!important;
+  transform:none!important;
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
+  min-height: 180px;
+}
+div[aria-hidden="true"] {
+  display: none!important;
+}
 .slider-image-container .img-outer .img-inner {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 188px;
-  height: 188px;
+  /* width: 188px;
+  height: 188px; */
   margin: 0 auto;
 }
 .slider-image-container .img-outer img {
@@ -1152,10 +1162,10 @@ option:not(:checked) {
 .pricing-card .plan-features li.not-added::before {
   background-image: url("../images/ic-list-dark-false.svg");
 }
-.pricing-card .btn-primary{
-    transition: all 300ms ease;
-    border: 0;
-    height: 48px;
+.pricing-card .btn-primary {
+  transition: all 300ms ease;
+  border: 0;
+  height: 48px;
 }
 
 .pricing-card:hover,
@@ -1169,7 +1179,7 @@ option:not(:checked) {
 .pricing-card:hover .plan-features li {
   color: #ffffff;
 }
-.pricing-card:hover .price > span{
+.pricing-card:hover .price > span {
   color: rgba(255, 255, 255, 0.8);
 }
 .pricing-card:hover .plan-features li.add::before {
@@ -1178,20 +1188,17 @@ option:not(:checked) {
 .pricing-card:hover .plan-features li.not-added::before {
   background-image: url("../images/ic-list-light-false.svg");
 }
-.pricing-card:hover .btn-primary{
+.pricing-card:hover .btn-primary {
   background-color: #ffffff !important;
   color: var(--primary);
   border-color: #ffffff;
 }
 
-.pricing-card:hover .btn-primary:hover{
+.pricing-card:hover .btn-primary:hover {
   background-color: var(--primary) !important;
   color: #ffffff;
   border-color: var(--primary) !important;
 }
-
-
-
 
 .contact-us {
   padding: 40px 0 0;
