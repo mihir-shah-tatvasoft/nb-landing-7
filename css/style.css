@@ -174,6 +174,11 @@ body {
   -ms-overflow-style: scrollbar;
   -webkit-font-smoothing: subpixel-antialiased;
 }
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: inherit;
+  }
+}
 .wrapper {
   min-height: 100vh;
 }
@@ -347,6 +352,7 @@ option:not(:checked) {
   background-position: center right 12px;
   background-repeat: no-repeat;
   padding-right: 40px;
+  border-radius: 8px !important;
 }
 /* Text
 --------------------------------------------------------------------------------------------------------*/
@@ -365,6 +371,46 @@ option:not(:checked) {
 .btn-close:focus {
   box-shadow: 0 0 0 0.25rem rgb(256 102 0 / 25%);
 }
+
+/* datepicker  */
+.datepicker table tr td.active.day {
+  background: var(--primary);
+}
+.datepicker table tr td.active.day:hover {
+  background: var(--primary);
+}
+.datepicker table tr td.day.focused,
+.datepicker table tr td.day:hover {
+  background-color: #e4ebf6;
+}
+.datepicker .datepicker-switch:hover {
+  background-color: #e4ebf6;
+  color: var(--primary);
+}
+.datepicker-dropdown {
+  padding: 12px;
+  margin-top: 6px;
+}
+.datepicker td,
+.datepicker th {
+  padding: 4px;
+}
+.datepicker td,
+.datepicker th {
+  width: 36px;
+  height: 36px;
+  line-height: 26px;
+  vertical-align: middle;
+}
+.datepicker table tr td span.active.active {
+  background: var(--primary);
+}
+.datepicker table tr td span.active:hover.active {
+  background: var(--primary);
+}
+/* .input-group .datepicker.datepicker-dropdown {
+  z-index: inherit !important;
+} */
 
 /* Common CSS
 --------------------------------------------------------------------------------------------------------*/
@@ -439,8 +485,9 @@ option:not(:checked) {
   font-size: 18px;
   line-height: 22px;
   color: var(--text-dark);
-  padding: 8px 20px;
+  padding: 8px 20px 4px 20px;
   font-weight: 500;
+  position: relative;
 }
 .header .navbar-nav .nav-link:after {
   content: "";
@@ -449,11 +496,14 @@ option:not(:checked) {
   height: 2px;
   background-color: var(--primary);
   transition: all 300ms ease;
+  margin-top: 6px;
 }
 .header .nav-link:hover:not(.active):after,
-.header .nav-link.active:after,
-.header .nav-link:focus:not(.active):after {
+.header .nav-link.active:after {
   width: 100%;
+}
+.header .nav-link:focus {
+  color: var(--primary);
 }
 .header .nav-link.active::after {
   width: 100%;
@@ -468,13 +518,17 @@ option:not(:checked) {
   background-color: transparent;
 }
 .header .btn-outline-light {
-  color: #ffffff;
+  color: #ffffff !important;
   background-color: transparent;
   border-color: transparent;
   border-width: 1px;
   border-radius: 10px;
   transition: all 300ms ease;
   font-weight: 600;
+  box-shadow: none !important;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 9px 18px;
 }
 .header .btn-outline-light:hover,
 .header .btn-outline-light:focus {
@@ -492,7 +546,16 @@ option:not(:checked) {
   border-color: var(--primary) !important;
 }
 .page-scrolled .header .btn-groups .btn-outline-light {
-  color: var(--primary);
+  color: var(--primary) !important;
+}
+.page-scrolled .header .btn-groups .btn-outline-light:hover,
+.page-scrolled .header .btn-groups .btn-outline-light:focus {
+  color: #ffffff !important;
+}
+.page-scrolled .header .btn-groups .btn-primary:hover,
+.page-scrolled .header .btn-groups .btn-primary:focus {
+  color: #ffffff !important;
+  background-color: transparent !important;
 }
 
 .hero {
@@ -507,7 +570,7 @@ option:not(:checked) {
   position: absolute;
   top: 0;
   right: 0;
-  left: 56%;
+  left: 54%;
   bottom: 0;
   height: 100%;
   background: url("../images/hero-side-bg.svg") no-repeat left bottom;
@@ -538,7 +601,7 @@ option:not(:checked) {
 }
 .hero-mockup-block {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding-top: 217px;
 }
 
@@ -564,7 +627,7 @@ option:not(:checked) {
   box-shadow: 0px 0px 56px 0px rgba(81, 141, 212, 0.1);
   padding: 40px 32px;
   max-width: 1288px;
-  margin-top: -103px;
+  margin-top: -108px;
 }
 
 .drive-title {
@@ -583,7 +646,10 @@ option:not(:checked) {
 /* Car Rental Steps
 --------------------------------------------------------------------------------------------------------*/
 .car-rental-steps {
-  padding-top: 152px;
+  padding-top: 90px;
+}
+.car-rental-steps .page-title {
+  padding-bottom: 12px;
 }
 .car-rental-steps .container {
   max-width: 1312px;
@@ -643,11 +709,34 @@ option:not(:checked) {
 .car-rental-steps .svg-wrap.third {
   animation-delay: 600ms;
 }
+.car-rental-steps .row .col-md-4:nth-child(2) .card-block {
+  position: relative;
+}
+.car-rental-steps .row .col-md-4:nth-child(2) .card-block::before,
+.car-rental-steps .row .col-md-4:nth-child(2) .card-block::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 60px;
+  background-size: 260px;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+.car-rental-steps .row .col-md-4:nth-child(2) .card-block::before {
+  background-image: url("../images/line-up.svg");
+  left: -50%;
+  top: 8px;
+}
+.car-rental-steps .row .col-md-4:nth-child(2) .card-block::after {
+  background-image: url("../images/line-down.svg");
+  right: -50%;
+  top: 40px;
+}
 
 /* About Us
 --------------------------------------------------------------------------------------------------------*/
 .about-us {
-  padding-top: 100px;
+  padding-top: 124px;
   padding-bottom: 60px;
   overflow: hidden;
 }
@@ -660,12 +749,27 @@ option:not(:checked) {
 .about-us .title-info {
   padding-bottom: 20px;
 }
+.about-us .container {
+  max-width: 1288px;
+}
 .about-us-mockup .mockup-inner {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 520px;
   height: 400px;
+}
+.about-us-mockup .mockup-inner .img-wrap:hover ~ .circle {
+  animation: circleScale 2s forwards infinite;
+}
+@keyframes circleScale {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
 }
 .about-us-mockup .mockup-inner .circle {
   width: 139px;
@@ -677,24 +781,33 @@ option:not(:checked) {
   left: -50px;
   display: block;
   z-index: -1;
+  transition: all 300ms ease;
 }
 .about-us-mockup .mockup-inner .img-wrap {
   width: 100%;
-  max-width: 350px;
+  max-width: 300px;
   border-radius: 20px;
   border: 4px solid #fff;
   background: rgba(211, 211, 211, 0.5);
   box-shadow: 0px 0px 50px 0px rgba(81, 141, 212, 0.1);
+  height: 250px;
+  overflow: hidden;
 }
 .about-us-mockup .mockup-inner .img-wrap img {
   display: block;
+  max-width: 100%;
+  height: 250px;
   width: 100%;
+  object-fit: cover;
 }
 .about-us-mockup .mockup-inner .img-wrap.back {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 20px;
+  right: 52px;
   z-index: -1;
+}
+.about-us .about-us-mockup {
+  padding-left: 105px;
 }
 
 .popular-cars {
@@ -750,6 +863,7 @@ option:not(:checked) {
   max-width: 298px;
   /* width: 298px !important; */
   min-width: 298px;
+  border: 0;
 }
 .car-card .card-title {
   font-size: 20px;
@@ -794,12 +908,15 @@ option:not(:checked) {
   margin: 50px auto 0;
 }
 .slider-outer .car-card {
-  margin: 0 16px;
+  margin: 8px 16px;
 }
 .car-card .card-body {
   padding-left: 0;
   padding-right: 0;
   padding-top: 30px;
+}
+.car-card:hover .car-view-block {
+  transform: scale(1.1);
 }
 .car-card .card-body .row {
   --bs-gutter-x: 8px;
@@ -807,6 +924,7 @@ option:not(:checked) {
 }
 .car-card .car-view-block {
   margin-bottom: 21px;
+  transition: all 500ms ease;
 }
 .car-card .car-view-block img {
   display: block;
@@ -874,6 +992,7 @@ option:not(:checked) {
 
 .why-us {
   padding: 40px 0 90px;
+  overflow: hidden;
 }
 .why-us .page-title {
   padding-bottom: 12px;
@@ -884,7 +1003,6 @@ option:not(:checked) {
 }
 .why-us .container {
   max-width: 1288px;
-  overflow: hidden;
 }
 .why-us .card {
   border-radius: 10px;
@@ -892,8 +1010,44 @@ option:not(:checked) {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   padding: 32px 20px;
   border: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  height: 100%;
 }
 
+.why-us .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  clip-path: inset(18% 74% 69% 12%);
+  transition: all 500ms ease;
+  border-radius: 8px;
+  background-color: transparent;
+}
+.why-us .row .col-sm-6:nth-child(1) .card:hover:after {
+  background-color: #54ccc5;
+}
+.why-us .row .col-sm-6:nth-child(2) .card:hover:after {
+  background-color: #f59956;
+}
+.why-us .row .col-sm-6:nth-child(3) .card:hover:after {
+  background-color: #8f93ee;
+}
+.why-us .row .col-sm-6:nth-child(4) .card:hover:after {
+  background-color: #ff9a9a;
+}
+.why-us .card:hover::after {
+  clip-path: inset(0 0 0 0);
+}
+.why-us .card:hover .data,
+.why-us .card:hover .suffix,
+.why-us .card:hover .data-info {
+  color: #ffffff;
+}
 .why-us .card .svg-wrap {
   display: flex;
   align-items: center;
@@ -902,6 +1056,7 @@ option:not(:checked) {
   height: 48px;
   border-radius: 6px;
   margin-bottom: 16px;
+  flex-shrink: 0;
 }
 .why-us .card .svg-wrap img {
   display: block;
@@ -914,12 +1069,22 @@ option:not(:checked) {
   font-weight: 700;
   line-height: 43px;
   padding-bottom: 8px;
+  transition: all 300ms ease;
+}
+.why-us .card .suffix {
+  color: var(--text-dark);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 43px;
+  padding-bottom: 8px;
+  transition: all 300ms ease;
 }
 .why-us .card .data-info {
   color: #90a3bf;
   font-size: 18px;
   font-weight: 500;
   line-height: 22px;
+  transition: all 300ms ease;
 }
 .why-us .container .row {
   --bs-gutter-x: 32px;
@@ -971,17 +1136,7 @@ option:not(:checked) {
   width: 100%;
   margin: 0 auto;
 }
-.slider-image-container .slick-track {
-  width: 100% !important;
-  transform: none !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 180px;
-}
-.slider-image-container div[aria-hidden="true"] {
-  display: none !important;
-}
+
 .slider-image-container .img-outer .img-inner {
   display: flex;
   align-items: center;
@@ -990,72 +1145,74 @@ option:not(:checked) {
   height: 188px; */
   margin: 0 auto;
 }
-.slider-image-container .img-outer img {
+
+.slider-thumb .slick-track {
+  width: 100% !important;
+  transform: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+}
+.slider-thumb .slick-slide {
+  width: 0;
+  height: 0;
+  transition: all 0.5s;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+}
+.slider-thumb .slick-slide img {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  display: block;
-  margin: 0 auto;
-  transition: all 300ms ease;
+  border: 1px solid #ffffff;
 }
 
-.img-outer.slick-slide .img-inner img {
+.slider-image-container .slick-active.slick-center.slick-current img {
+  border-width: 4px;
+}
+.slider-thumb .slick-active img,
+.slider-image-container .slick-active.slick-center + .slick-active img {
+  border-width: 1px;
+}
+.slider-image-container .slick-active + .slick-active img, 
+.slider-image-container .slick-active.slick-center + .slick-active img{
+  border-width: 2px;
+}
+.slider-image-container .slick-active.slick-center + .slick-active + .slick-active img{
+  border-width: 2px;
+}
+.slider-image-container .slick-active.slick-center + .slick-active + .slick-active + .slick-active img{
+  border-width: 1px;
+}
+
+.slider-thumb .slick-active,
+.slider-image-container
+  .slick-active.slick-center
+  + .slick-active
+  + .slick-active
+  + .slick-active {
   width: 50px;
   height: 50px;
+  margin: 0 32px;
 }
-
+.slider-image-container .slick-active + .slick-active,
 .slider-image-container
-  .slick-slide.slick-active
-  + .slick-slide
-  .img-inner
-  img {
+  .slick-active.slick-center
+  + .slick-active
+  + .slick-active {
   width: 80px;
   height: 80px;
 }
-.slider-image-container
-  .slick-slide.slick-active
-  + .slick-slide
-  + .slick-slide
-  .img-inner
-  img {
+.slider-image-container .slick-active + .slick-active + .slick-active,
+.slider-image-container .slick-active.slick-center + .slick-active {
   width: 120px;
   height: 120px;
 }
-.slider-image-container .slick-slide.slick-active.slick-center .img-inner img {
-  width: 180px !important;
-  height: 180px !important;
-}
-/* .slider-image-container .slick-slide.slick-active.slick-center .img-inner{
-  width: 220px;
-  height: 220px;
-} */
-
-.slider-image-container
-  .slick-slide.slick-active.slick-center
-  + .slick-slide
-  .img-inner
-  img {
-  width: 120px;
-  height: 120px;
-}
-
-.slider-image-container
-  .slick-slide.slick-active.slick-center
-  + .slick-slide
-  + .slick-slide
-  .img-inner
-  img {
-  width: 80px;
-  height: 80px;
-}
-
-.slider-image-container
-  .slick-slide.slick-active.slick-center
-  + .slick-slide
-  + .slick-slide
-  + .slick-slide
-  .img-inner
-  img {
-  width: 50px;
-  height: 50px;
+.slider-image-container .slick-active.slick-center.slick-current {
+  width: 180px;
+  height: 180px;
 }
 .testimonials .slick-arrow::before {
   display: none;
@@ -1070,8 +1227,14 @@ option:not(:checked) {
   width: 48px;
   height: 48px;
 }
-
-.slider-container{
+.testimonials .slick-arrow:hover,
+.testimonials .slick-arrow:focus {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.testimonials .slick-prev {
+  z-index: 1;
+}
+.slider-container {
   margin-top: 20px;
 }
 
@@ -1132,6 +1295,8 @@ option:not(:checked) {
 }
 .pricing-card .plan-features {
   padding: 16px 0;
+  max-width: 180px;
+  margin: 0 auto;
 }
 
 .pricing-card .plan-features li {
@@ -1203,8 +1368,9 @@ option:not(:checked) {
 }
 
 .contact-us {
-  padding: 40px 0 0;
+  padding: 140px 0 0;
   position: relative;
+  overflow: hidden;
 }
 .contact-us::after {
   content: "";
@@ -1220,7 +1386,7 @@ option:not(:checked) {
 .contact-us .container {
   background-color: var(--primary);
   border-radius: 20px;
-  max-width: 1288px;
+  max-width: 1284px;
   padding: 61px 60px;
   position: relative;
 }
@@ -1253,7 +1419,12 @@ option:not(:checked) {
   overflow: hidden;
 }
 .footer .container {
-  max-width: 1288px;
+  max-width: 1300px;
+  overflow: hidden;
+}
+.footer .row {
+  --bs-gutter-x: 60px;
+  justify-content: space-between;
 }
 .copyright {
   padding: 0;
@@ -1292,6 +1463,7 @@ option:not(:checked) {
   transition: all 300ms ease;
   display: flex;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 .footer .other-links a > img {
   margin-right: 8px;
@@ -1304,6 +1476,7 @@ option:not(:checked) {
   opacity: 1;
   transition: all 300ms ease;
   display: flex;
+  align-items: flex-start;
   margin-bottom: 20px;
 }
 .footer .other-links p > img {
@@ -1313,7 +1486,7 @@ option:not(:checked) {
 .footer .other-links a:hover,
 .footer .other-links a:focus {
   opacity: 1;
-  text-decoration: underline;
+  color: var(--primary);
 }
 
 .social-wrap {
@@ -1328,6 +1501,26 @@ option:not(:checked) {
   justify-content: center;
   width: 22px;
   height: 22px;
+  position: relative;
+  z-index: 0;
+}
+.social-wrap a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 32px;
+  height: 32px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: center;
+  background-color: rgba(81, 141, 212, 0.5);
+  border-radius: 50%;
+  transition: all 300ms ease;
+  z-index: -1;
+}
+.social-wrap a:hover:after {
+  transform: translate(-50%, -50%) scale(1);
 }
 .social-wrap a > img {
   display: block;
@@ -1351,6 +1544,9 @@ option:not(:checked) {
 /* Responsive Media Queries
 --------------------------------------------------------------------------------------------------------*/
 @media (max-width: 1440px) {
+  .about-us .about-us-mockup {
+    padding-left: 0;
+  }
 }
 @media (max-width: 1399px) {
   .hero .hero-content {
@@ -1370,6 +1566,10 @@ option:not(:checked) {
   .contact-us .container {
     max-width: calc(100% - 32px);
   }
+
+  .container{
+    padding: 0 24px;
+  }
 }
 @media (max-width: 1199px) {
   .page-title {
@@ -1380,7 +1580,7 @@ option:not(:checked) {
     padding: 0 16px;
   }
   .header .navbar-nav .nav-link {
-    padding: 8px 12px;
+    padding: 8px 12px 4px 12px;
   }
 
   .hero .hero-content {
@@ -1394,23 +1594,47 @@ option:not(:checked) {
   .car-rental-steps {
     padding-top: 80px;
   }
-  .img-outer.slick-slide .img-inner img {
+  .slider-thumb .slick-active,
+  .slider-image-container .slick-active.slick-center + .slick-active {
     width: 120px;
     height: 120px;
   }
-  .slider-image-container
-    .slick-slide.slick-active.slick-center
-    + .slick-slide
-    .img-inner
-    img {
-    width: 120px;
-    height: 120px;
+  .slider-image-container .slick-active.slick-center.slick-current {
+    width: 180px;
+    height: 180px;
+  }
+  .slider-thumb .slick-active img, .slider-image-container .slick-active.slick-center + .slick-active img{
+    border-width: 2px;
+  }
+
+  .contact-us .container {
+    padding: 40px;
+  }
+  .contact-us .man-wrap {
+    right: 16px;
+    bottom: -57px;
+  }
+  .footer .logo-div-outer {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+
+  .footer .footer-logo-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    margin: 0 auto 24px;
   }
 }
 @media (max-width: 991px) {
+  .container{
+    padding: 0 12px;
+  }
   .page-title {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 28px;
+    line-height: 38px;
   }
   .header {
     padding: 6px 0;
@@ -1460,7 +1684,7 @@ option:not(:checked) {
   }
 
   .hero {
-    padding-bottom: 200px;
+    padding-bottom: 160px;
   }
   .hero-mockup-block::after {
     content: "";
@@ -1484,7 +1708,7 @@ option:not(:checked) {
   .hero .hero-content {
     text-align: center;
     margin: 0 auto;
-    padding-top: 80px;
+    padding-top: 40px;
   }
   .hero .hero-mockup-block .car-wrap {
     margin: 0 auto;
@@ -1494,15 +1718,79 @@ option:not(:checked) {
   }
 
   .book-your-drive .btn-primary {
-    margin: 16px auto 0;
+    margin: 8px auto 0;
+    display: block;
   }
 
+  .about-us {
+    padding-bottom: 30px;
+  }
   .about-us-mockup .mockup-inner {
     margin: 0 auto;
   }
   .about-us .about-us-content {
     text-align: center;
     padding-top: 40px;
+  }
+
+  .why-us {
+    padding-bottom: 40px;
+  }
+  .why-us .title-info {
+    margin-bottom: 24px;
+  }
+  .why-us .container .row {
+    --bs-gutter-x: 16px;
+    --bs-gutter-y: 16px;
+  }
+  .why-us .container {
+    overflow: visible;
+  }
+  .why-us .card {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 16px;
+  }
+  .why-us .card .svg-wrap {
+    margin-bottom: 0;
+    margin-right: 16px;
+    margin-top: 7px;
+  }
+  .why-us .card .data{
+    padding-bottom: 0;
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .why-us .card .suffix{
+    padding-bottom: 0;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .pricing-wrapper {
+    padding: 40px 0;
+  }
+  .contact-us {
+    padding-top: 30px;
+  }
+
+  .footer .row {
+    --bs-gutter-x: 130px;
+  }
+
+  .contact-us .man-wrap img {
+    height: 280px;
+  }
+
+  .car-rental-steps .row .col-md-4:nth-child(2) .card-block::before,
+  .car-rental-steps .row .col-md-4:nth-child(2) .card-block::after {
+    display: none;
+  }
+  .car-rental-steps .row {
+    --bs-gutter-y: 24px;
+  }
+  .testimonials {
+    padding: 40px 0;
   }
 }
 @media (max-width: 767px) {
@@ -1532,6 +1820,28 @@ option:not(:checked) {
     padding: 24px 16px;
   }
 
+  .about-us-mockup .mockup-inner .img-wrap.back {
+    display: none;
+  }
+  .about-us-mockup .mockup-inner {
+    height: auto;
+  }
+  .about-us {
+    padding-bottom: 30px;
+  }
+  .about-us-mockup .mockup-inner {
+    max-width: 300px;
+  }
+  .popular-cars {
+    padding-top: 30px;
+  }
+  .why-us {
+    padding: 30px 0 30px;
+  }
+  .pricing-wrapper {
+    padding-top: 30px;
+  }
+
   .popular-cars .navigation-ul {
     flex-wrap: wrap;
     gap: 16px;
@@ -1547,6 +1857,101 @@ option:not(:checked) {
   .popular-cars .navigation-ul li .btn {
     width: 100%;
   }
+  .slider-thumb .slick-track {
+    min-height: 150px;
+  }
+  .img-outer.slick-slide .img-inner img {
+    width: 120px;
+    height: 120px;
+  }
+  .slider-container {
+    margin-top: 0;
+  }
+  .car-slider .slick-dots {
+    bottom: -28px;
+  }
+  .popular-cars {
+    padding-bottom: 20px;
+  }
+  .slider-image-container
+    .slick-slide.slick-active.slick-center
+    + .slick-slide
+    .img-inner
+    img {
+    width: 80px;
+    height: 80px;
+  }
+  .testimonials .container {
+    max-width: 100%;
+  }
+  .testimonials .slick-prev {
+    left: 0;
+  }
+  .testimonials .slick-next {
+    right: 0;
+  }
+  .slider-content .slider-card .slider-text {
+    font-size: 30px;
+    line-height: 38px;
+  }
+  .slider-image-container
+    .slick-slide.slick-active.slick-center
+    .img-inner
+    img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  .testimonials .slick-arrow {
+    width: 38px;
+    height: 38px;
+  }
+  .footer .logo-div-outer {
+    margin-bottom: 24px;
+  }
+  .footer .other-links h4,
+  .other-title {
+    text-align: center;
+    padding-top: 16px;
+  }
+  .footer .row {
+    --bs-gutter-x: 12px;
+  }
+  .footer .other-links,
+  .social-wrap-outer {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .footer .other-links a {
+    width: max-content;
+    margin: 0 auto 20px;
+  }
+  .footer .other-links p {
+    width: max-content;
+    margin: 0 auto 20px;
+  }
+  .social-wrap {
+    justify-content: center;
+  }
+  .footer .copy-block {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-us .man-wrap {
+    display: none;
+  }
+  .contact-us .man-wrap img {
+    height: 200px;
+  }
+  .contact-us .contact-us-block {
+    text-align: center;
+  }
+  .contact-us .container {
+    padding: 30px 16px;
+  }
+  .contact-us {
+    padding-top: 40px;
+  }
 }
 @media (max-width: 575px) {
   .popular-cars .navigation-ul li {
@@ -1561,5 +1966,15 @@ option:not(:checked) {
   }
   .hero .hero-content {
     max-width: 330px;
+  }
+  .header .btn-primary {
+    margin-left: 8px;
+  }
+  .header .navbar-toggler {
+    width: 38px;
+    height: 38px;
+  }
+  .hero-mockup-block::after {
+    left: 12%;
   }
 }

@@ -1,5 +1,6 @@
 /* Import All css here */
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap";
+@import "bootstrap-datepicker.min.css";
 @import "slick.css";
 @import "slick-theme.css";
 @import "bootstrap.min.css";
